@@ -1,0 +1,207 @@
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 320px;
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border-color); /* Changed to right because it's on left now */
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.sidebar-mobile-toggle {
+  display: none;
+}
+
+.sidebar-footer {
+  padding: 24px;
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.main-content {
+  flex: 1;
+  position: relative;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Pagination Dots */
+.pagination-dots {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 20;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  will-change: opacity, transform;
+  transform: translateY(-50%) translateZ(0);
+}
+
+.pagination-dots.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--border-color);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.dot:hover {
+  background-color: var(--color-text-muted);
+}
+
+.dot.active {
+  background-color: var(--accent-purple);
+  transform: scale(1.2);
+}
+
+/* Scroll Container for Vertical Snap */
+.scroll-container {
+  flex: 1;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  /* Hide scrollbar for cleaner look */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.page {
+  height: 100vh;
+  width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+}
+
+.page-content {
+  width: 100%;
+  max-width: 800px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    flex-shrink: 0;
+    border-right: none;
+    border-top: 1px solid var(--border-color);
+    order: 2;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background-color: var(--bg-dark);
+    transition: height 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+    will-change: height, transform;
+    transform: translateZ(0);
+  }
+
+  .sidebar.collapsed {
+    height: 60px;
+  }
+
+  .sidebar.expanded {
+    height: 85vh;
+  }
+
+  .sidebar-mobile-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    height: 60px;
+    min-height: 60px;
+    cursor: pointer;
+    background-color: var(--bg-panel);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sidebar .leaderboard-header {
+    display: none;
+  }
+  
+  .main-content {
+    height: auto;
+    flex: 1;
+    order: 1;
+    padding-bottom: 60px; /* Space for the collapsed header so it doesn't overlap content */
+  }
+  
+  .scroll-container {
+    height: 100%;
+  }
+  
+  .page {
+    height: 100%;
+    padding: 16px;
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease forwards;
+  will-change: opacity, transform;
+  transform: translateZ(0);
+}
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: var(--accent-purple);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.header-subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  font-weight: 500;
+}

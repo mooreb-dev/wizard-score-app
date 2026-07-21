@@ -1,0 +1,105 @@
+.score-table-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+.table-wrapper {
+  width: 100%;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+}
+
+.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.score-table th, .score-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.score-table th {
+  background-color: var(--bg-dark);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.score-table th:not(:last-child),
+.score-table td:not(:last-child) {
+  border-right: 1px solid var(--border-color);
+}
+
+.score-table tr:last-child td {
+  border-bottom: none;
+}
+
+.round-col {
+  width: 60px;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.player-col {
+  min-width: 120px;
+}
+
+.fw-bold {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.empty-state {
+  color: var(--color-text-muted);
+  padding: 32px !important;
+  font-style: italic;
+}
+
+.score-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.score-bid-won {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.score-delta {
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background-color: var(--bg-dark);
+}
+
+.score-delta.positive {
+  color: var(--success-green);
+  background-color: var(--success-green-dim);
+}
+
+.score-delta.negative {
+  color: var(--error-red);
+  background-color: var(--error-red-dim);
+}
+
+.score-total {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: 4px;
+}
